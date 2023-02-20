@@ -9,14 +9,12 @@ namespace cubo
 {
     public class Vertice
     {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-        public Vertice(float x, float y, float z)
+        public float X, Y, Z;
+        public Vertice(float a, float b, float c)
         {
-            X = x;
-            Y = y;
-            Z = z;
+            X = a;
+            Y = b;
+            Z = c;
         }
 
         public Vertice RotateX(int angle)
@@ -24,18 +22,18 @@ namespace cubo
             float rad = (float)(angle * Math.PI / 180);
             float cos = (float)Math.Cos(rad);
             float sin = (float)Math.Sin(rad);
-            float yn = (Y * cos) - (Z * sin);
-            float zn = (Y * sin) + (Z * cos);
-            return new Vertice(X, yn, zn);
+            float y = (Y * cos) - (Z * sin);
+            float z = (Y * sin) + (Z * cos);
+            return new Vertice(X, y, z);
         }
         public Vertice RotateY(int angle)
         {
             float rad = (float)(angle * Math.PI / 180);
             float cos = (float)Math.Cos(rad);
             float sin = (float)Math.Sin(rad);
-            float Zn = (Z * cos) - (X * sin);
-            float Xn = (Z * sin) + (X * cos);
-            return new Vertice(Xn, Y, Zn);
+            float z = (Z * cos) - (X * sin);
+            float x = (Z * sin) + (X * cos);
+            return new Vertice(x, Y, z);
         }
 
         public Vertice RotateZ(int angle)
@@ -43,17 +41,17 @@ namespace cubo
             float rad = (float)(angle * Math.PI / 180);
             float cos = (float)Math.Cos(rad);
             float sin = (float)Math.Sin(rad);
-            float Xn = (X * cos) - (Y * sin);
-            float Yn = (X * sin) + (Y * cos);
-            return new Vertice(Xn, Yn, Z);
+            float x = (X * cos) - (Y * sin);
+            float y = (X * sin) + (Y * cos);
+            return new Vertice(x, y, Z);
         }
 
         public Vertice Project(int viewWidth, int viewHeight, int fov, int viewDistance)
         {
             float factor = fov / (viewDistance + Z);
-            float Xn = X * factor + viewWidth / 2;
-            float Yn = Y * factor + viewHeight / 2;
-            return new Vertice(Xn, Yn, 0);
+            float x = X * factor + viewWidth / 2;
+            float y = Y * factor + viewHeight / 2;
+            return new Vertice(x, y, 0);
         }
     }
 }

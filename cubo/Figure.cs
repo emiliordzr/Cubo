@@ -8,14 +8,14 @@ namespace cubo
 {
     public class Figure
     {
+        public Vertice[] Vertices;
+        public int[,] Faces;
         public Figure(Vertice[] vertices, int[,] faces)
         {
             Vertices = vertices;
             Faces = faces;
         }
 
-        public Vertice[] Vertices { get; set; }
-
-        public int[,] Faces { get; set; }
+       
     }
 }
